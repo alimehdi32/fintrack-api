@@ -9,7 +9,7 @@ router = APIRouter()
 
 @router.post("/", response_model=UserResponse)
 def register_user(payload: UserCreate, db: Session = Depends(get_db)):
-    return create_user(db, payload.email, payload.password)
+    return create_user(db, payload.email, payload.password, payload.role)
 
 @router.get("/me")
 def get_me(current_user = Depends(get_current_user)):

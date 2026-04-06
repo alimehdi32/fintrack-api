@@ -128,3 +128,41 @@ uvicorn main:app --reload
 
 
 ---
+
+## Rate Limiting
+
+- Applied per client
+- Example: 5 requests per minute
+
+---
+
+## Caching
+
+- Redis used for dashboard endpoints
+- Cache invalidated on record creation/update
+
+---
+
+## Design Decisions
+
+- Service layer for business logic separation
+- Dependency injection for DB/session handling
+- Stateless authentication using JWT
+- Redis for performance optimization
+- Centralized error handling
+
+---
+
+## Future Improvements
+
+- Docker support
+- CI/CD pipeline
+- Async database support
+- Background jobs
+- Monitoring and logging
+
+---
+
+## Author
+
+This project demonstrates backend engineering practices including scalability, security, performance optimization, and clean architecture.

@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from sqlalchemy.orm import Session
 from app.core.rate_limiter import limiter
 from app.schemas.record import RecordCreate, RecordResponse
@@ -11,6 +11,7 @@ router = APIRouter()
 @router.post("/", response_model=RecordResponse)
 @limiter.limit("5/minute")
 def add_record(
+    request: Request,
     payload: RecordCreate,
     db: Session = Depends(get_db),
     user = Depends(require_roles(["admin"]))
@@ -21,6 +22,7 @@ def add_record(
 @router.get("/", response_model=list[RecordResponse])
 @limiter.limit("5/minute")
 def list_records(
+    request: Request,
     db: Session = Depends(get_db),
     user = Depends(require_roles(["analyst", "admin"]))
 ):
